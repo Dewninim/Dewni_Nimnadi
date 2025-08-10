@@ -768,6 +768,38 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <!-- Isotope JS -->
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  
+  // Initialize Isotope
+  var iso = new Isotope('.isotope-container', {
+    itemSelector: '.isotope-item',
+    layoutMode: 'masonry'
+  });
+
+  // Filter items on click
+  document.querySelectorAll('.portfolio-filters li').forEach(function (filterBtn) {
+    filterBtn.addEventListener('click', function () {
+      // Remove 'filter-active' from all
+      document.querySelectorAll('.portfolio-filters li').forEach(function (el) {
+        el.classList.remove('filter-active');
+      });
+      // Add 'filter-active' to clicked
+      this.classList.add('filter-active');
+
+      // Filter Isotope items
+      var filterValue = this.getAttribute('data-filter');
+      iso.arrange({ filter: filterValue });
+    });
+  });
+
+});
+</script>
+
+
 </body>
 
 </html>
